@@ -1,0 +1,35 @@
+{
+  "manifest_version": 3,
+  "name": "MovieBot Extension",
+  "version": "1.0",
+  "description": "A Chrome extension for MovieBot authentication and movie recommendations.",
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": "icon.png"
+  },
+  "permissions": ["storage", "identity"],
+  "host_permissions": [
+    "https://*.firebaseapp.com/",
+    "https://*.firebaseio.com/",
+    "https://*.googleapis.com/"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://www.netflix.com/*", "https://www.disneyplus.com/*", "https://www.primevideo.com/*"],
+      "js": ["content.js"],
+      "css": ["style.css"]
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["firebase-config.js", "auth.js"],
+      "matches": ["<all_urls>"]
+    }
+  ],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'"
+  }
+}
