@@ -1,35 +1,23 @@
 {
   "manifest_version": 3,
-  "name": "MovieBot Extension",
+  "name": "MovieBot Launcher",
   "version": "1.0",
-  "description": "A Chrome extension for MovieBot authentication and movie recommendations.",
+  "description": "Launch MovieBot web app via Chrome extension.",
   "action": {
-    "default_popup": "popup.html",
+    "default_title": "Open MovieBot",
     "default_icon": "icon.png"
   },
-  "permissions": ["storage", "identity"],
-  "host_permissions": [
-    "https://*.firebaseapp.com/",
-    "https://*.firebaseio.com/",
-    "https://*.googleapis.com/"
-  ],
   "background": {
     "service_worker": "background.js"
   },
-  "content_scripts": [
-    {
-      "matches": ["https://www.netflix.com/*", "https://www.disneyplus.com/*", "https://www.primevideo.com/*"],
-      "js": ["content.js"],
-      "css": ["style.css"]
-    }
-  ],
-  "web_accessible_resources": [
-    {
-      "resources": ["firebase-config.js", "auth.js"],
-      "matches": ["<all_urls>"]
-    }
-  ],
+  "icons": {
+    "16": "icon.png",
+    "48": "icon.png",
+    "128": "icon.png"
+  },
+  "permissions": [],
+  "host_permissions": ["https://yourapp.web.app/"],
   "content_security_policy": {
-    "extension_pages": "script-src 'self'; object-src 'self'"
+    "extension_pages": "script-src 'self'; object-src 'self';"
   }
 }
